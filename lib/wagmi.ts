@@ -2,22 +2,23 @@ import { createAppKit } from "@reown/appkit/react";
 import { WagmiAdapter } from "@reown/appkit-adapter-wagmi";
 import { bsc } from "@reown/appkit/networks";
 
-const projectId = "05e21b0bc8ed3b5c5c17c5af120b2cc2";
+const projectId =
+  (process.env.NEXT_PUBLIC_PROJECT_ID as string) ||
+  "b56e18d47c72ab683b10814fe9495694";
 
-// 2. Create a metadata object - optional
 const metadata = {
   name: "Gululu NFT",
   description:
     "Swap Your Ridiculous Dragons And Nomaimai NFTs For Gululu Points",
-  url: "https://gululu-nft-test.vercel.app", // origin must match your domain & subdomain
+  url: "https://gululu-nft-test.vercel.app",
   icons: ["https://avatars.githubusercontent.com/u/179229932"],
 };
 
 // 3. Set the networks
 const networks = [bsc];
 
-// 4. Create Wagmi Adapter
-const wagmiAdapter = new WagmiAdapter({
+// 4. Create Wagmi Adaptere
+export const wagmiAdapter = new WagmiAdapter({
   networks,
   projectId,
   ssr: false,
