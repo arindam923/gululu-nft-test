@@ -19,7 +19,7 @@ interface NFT {
   name: string;
   image?: string;
   contractAddress: string;
-  metadata?: any;
+  metadata?: unknown;
 }
 
 const calculateRarityPoints = (
