@@ -1,26 +1,22 @@
 "use client";
-import Image from "next/image";
 
+import Image from "next/image";
 import Link from "next/link";
 import { useAccount, useDisconnect } from "wagmi";
-import { Button } from "./ui/button";
-import { LogOut } from "lucide-react";
+
 import { ConnectButton } from "@rainbow-me/rainbowkit";
 import { usePathname, useRouter } from "next/navigation";
 import { useEffect } from "react";
-
-const ConnectWalletButton = () => {
-  return (
-    <div className="scale-90 lg:scale-100 xl:scale-110">
-      <ConnectButton />
-    </div>
-  );
-};
+import { Button } from "./ui/button";
+import { LogOut, Wallet } from "lucide-react";
+import { useUserPoints } from "@/lib/hooks/useUserPoints";
 
 const Header = () => {
   const { isConnected } = useAccount();
   const { disconnect } = useDisconnect();
   const router = useRouter();
+  const { points, isLoading } = useUserPoints();
+
   const pathname = usePathname();
 
   useEffect(() => {
@@ -29,8 +25,13 @@ const Header = () => {
     }
   }, [isConnected, router, pathname]);
 
+  const handlePointsClick = () => {
+    router.push("/swap");
+  };
+
   const handleDisconnect = () => {
     disconnect();
+    router.push("/");
   };
 
   return (
@@ -62,11 +63,11 @@ const Header = () => {
         {isConnected ? (
           <>
             <Button
-              // onClick={handlePointsClick}
+              onClick={handlePointsClick}
               className="bg-[#ffdcaf] hover:bg-[#e7c393] text-black scale-90 lg:scale-100 xl:scale-110 text-[10px] md:text-xs lg:text-sm xl:text-xl h-6 md:h-8 lg:h-10 xl:h-12 rounded-lg px-4 lg:px-6 xl:px-8 border-2 border-black shadow-neo"
             >
               <Image src="/LOGOy2 1.png" alt="" width={20} height={20} />
-              {/* {isLoading ? "Loading..." : `${points} Points`} */}
+              {isLoading ? "Loading..." : `${points} Points`}
             </Button>
             <Button
               onClick={handleDisconnect}
@@ -77,7 +78,17 @@ const Header = () => {
             </Button>
           </>
         ) : (
-          <ConnectWalletButton />
+          <ConnectButton.Custom>
+            {({ openConnectModal }) => (
+              <Button
+                onClick={openConnectModal}
+                className="bg-[#ffdcaf] mr-5 hover:bg-[#e7c393] text-black scale-90 lg:scale-100 xl:scale-110 text-[10px] md:text-xs lg:text-sm xl:text-xl h-6 md:h-8 lg:h-10 xl:h-12 rounded-lg px-4 lg:px-6 xl:px-8 border-2 border-black shadow-neo"
+              >
+                <Wallet className="w-4 h-4 mr-1" />
+                Connect Wallet
+              </Button>
+            )}
+          </ConnectButton.Custom>
         )}
       </div>
     </div>

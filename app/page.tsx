@@ -1,14 +1,24 @@
 "use client";
 
+import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import Header from "@/components/Header";
 import Image from "next/image";
 import { cn, racing, spicy } from "@/lib/utils";
 import { ConnectButton } from "@rainbow-me/rainbowkit";
 import { useAccount } from "wagmi";
+import { useEffect, useState } from "react";
 
 export default function WelcomeScreen() {
   const { isConnected } = useAccount();
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  if (!mounted) return null;
+
   return (
     <div>
       <Header />
@@ -20,6 +30,10 @@ export default function WelcomeScreen() {
         height={100}
         className="absolute top-0 left-0 w-full object-cover"
         priority
+        sizes="100vw"
+        style={{ width: "100%", height: "auto" }}
+        placeholder="blur"
+        blurDataURL="/bg1.png"
       />
       <Image
         src={"/bg2.png"}
@@ -28,6 +42,10 @@ export default function WelcomeScreen() {
         height={100}
         className="absolute top-[330px] md:top-[1150px] left-0 w-full object-cover"
         priority
+        sizes="100vw"
+        style={{ width: "100%", height: "auto" }}
+        placeholder="blur"
+        blurDataURL="/bg2.png"
       />
 
       {/* Main Content */}
@@ -66,9 +84,16 @@ export default function WelcomeScreen() {
               NFTs For Gululu Points
             </p>
             {!isConnected && (
-              <div className="scale-90 lg:scale-100 xl:scale-110">
-                <ConnectButton />
-              </div>
+              <ConnectButton.Custom>
+                {(props) => (
+                  <Button
+                    onClick={props.openConnectModal}
+                    className="bg-[#ffdcaf] hover:bg-[#e7c393] text-black scale-90 lg:scale-100 xl:scale-110 text-[10px] md:text-xs lg:text-sm xl:text-xl h-6 md:h-8 lg:h-10 xl:h-12 rounded-lg px-4 lg:px-6 xl:px-8 border-2 border-black shadow-neo"
+                  >
+                    Connect Wallet
+                  </Button>
+                )}
+              </ConnectButton.Custom>
             )}
           </div>
         </div>
@@ -89,6 +114,8 @@ export default function WelcomeScreen() {
             height={100}
             className="mb-4 absolute -translate-y-full top-4 lg:top-8 xl:top-12 -right-10 lg:-right-16 xl:-right-20 z-[1] w-36 md:w-40 lg:w-64 xl:w-[500px]"
             loading="lazy"
+            sizes="(max-width: 768px) 50vw, 25vw"
+            style={{ width: "100%", height: "auto" }}
           />
           <Image
             src={"/32.png"}
@@ -97,6 +124,8 @@ export default function WelcomeScreen() {
             height={100}
             className="mb-4 absolute -translate-y-full top-8 lg:top-12 xl:top-16 -left-9 lg:-left-16 xl:-left-20 z-[1] w-36 md:w-38 lg:w-64 xl:w-[500px]"
             loading="lazy"
+            sizes="(max-width: 768px) 50vw, 25vw"
+            style={{ width: "100%", height: "auto" }}
           />
 
           <Card className="border-2 lg:border-4 p-0 mx-3 lg:mx-6 xl:mx-8 rounded-none border-black bg-[#FFC67C] shadow-neo">
@@ -118,6 +147,8 @@ export default function WelcomeScreen() {
                 className="w-20 lg:w-28 xl:w-56"
                 height={50}
                 loading="lazy"
+                sizes="(max-width: 768px) 30vw, 15vw"
+                style={{ width: "100%", height: "auto" }}
               />
             </CardContent>
           </Card>
@@ -131,6 +162,8 @@ export default function WelcomeScreen() {
                 className="w-20 lg:w-28 xl:w-56 -translate-y-1"
                 height={50}
                 loading="lazy"
+                sizes="(max-width: 768px) 30vw, 15vw"
+                style={{ width: "100%", height: "auto" }}
               />
               <div className="flex-1 text-right">
                 <h3 className="font-bold text-black text-sm lg:text-4xl xl:text-6xl">
@@ -164,6 +197,8 @@ export default function WelcomeScreen() {
                 className="w-20 lg:w-28 xl:w-56"
                 height={50}
                 loading="lazy"
+                sizes="(max-width: 768px) 30vw, 15vw"
+                style={{ width: "100%", height: "auto" }}
               />
             </CardContent>
           </Card>
@@ -177,6 +212,8 @@ export default function WelcomeScreen() {
                 className="w-20 lg:w-28 xl:w-56"
                 height={50}
                 loading="lazy"
+                sizes="(max-width: 768px) 30vw, 15vw"
+                style={{ width: "100%", height: "auto" }}
               />
               <div className="flex-1 text-right">
                 <h3 className="font-bold text-black text-sm lg:text-4xl xl:text-6xl">
