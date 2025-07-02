@@ -7,11 +7,9 @@ import { cn, racing, spicy } from "@/lib/utils";
 
 // import { ConnectButton } from "@rainbow-me/rainbowkit";
 // import { useAccount } from "wagmi";
-import { useEffect, useState } from "react";
 
 export default function WelcomeScreen() {
   // const { isConnected } = useAccount();
-  const [mounted, setMounted] = useState(false);
 
   return (
     <div>

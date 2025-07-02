@@ -1,12 +1,10 @@
 "use client";
 import Image from "next/image";
-import { Button } from "./ui/button";
-import { Wallet, LogOut } from "lucide-react";
+
 import Link from "next/link";
 // import { useAccount, useDisconnect } from "wagmi";
 // import { ConnectButton } from "@rainbow-me/rainbowkit";
-import { usePathname, useRouter } from "next/navigation";
-import { useEffect } from "react";
+
 // import { useUserPoints } from "@/lib/hooks/useUserPoints";
 
 const Header = () => {
@@ -14,8 +12,6 @@ const Header = () => {
   //   const { disconnect } = useDisconnect();
   //   const router = useRouter();
   //   const { points, isLoading } = useUserPoints();
-
-  const pathname = usePathname();
 
   //   useEffect(() => {
   //     if (isConnected && pathname === "/") {
