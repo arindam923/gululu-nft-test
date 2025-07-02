@@ -1,5 +1,5 @@
-import { getDefaultConfig } from '@rainbow-me/rainbowkit';
-import { bsc } from 'wagmi/chains';
+import { getDefaultConfig } from "@rainbow-me/rainbowkit";
+import { bsc } from "wagmi/chains";
 import {
   metaMaskWallet,
   trustWallet,
@@ -10,15 +10,15 @@ import {
   braveWallet,
   coin98Wallet,
   safeWallet,
-} from '@rainbow-me/rainbowkit/wallets';
+} from "@rainbow-me/rainbowkit/wallets";
 
 export const config = getDefaultConfig({
-  appName: 'Gululand',
-  projectId: '79a9f90c238da1f445b4f668fbab96cc', 
+  appName: "Gululand",
+  projectId: "05e21b0bc8ed3b5c5c17c5af120b2cc2",
   chains: [bsc],
   wallets: [
     {
-      groupName: 'Recommended',
+      groupName: "Recommended",
       wallets: [
         metaMaskWallet,
         trustWallet,
@@ -29,13 +29,9 @@ export const config = getDefaultConfig({
       ],
     },
     {
-      groupName: 'Other',
-      wallets: [
-        walletConnectWallet,
-        injectedWallet,
-        safeWallet,
-      ],
+      groupName: "Other",
+      wallets: [walletConnectWallet, injectedWallet, safeWallet],
     },
   ],
-  ssr: true, 
+  ssr: true,
 });

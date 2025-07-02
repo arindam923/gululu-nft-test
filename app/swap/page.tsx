@@ -498,10 +498,6 @@ export default function SwapNftsScreen() {
         height={100}
         className="absolute -top-20 left-0 w-full object-cover"
         loading="lazy"
-        sizes="100vw"
-        style={{ width: "100%", height: "auto" }}
-        placeholder="blur"
-        blurDataURL="/bg2.png"
       />
       <div className="relative z-10 p-6 pb-20 lg:p-8 xl:p-12">
         <div className="flex justify-center items-center relative mb-8 lg:mb-10 xl:mb-12">
@@ -512,8 +508,6 @@ export default function SwapNftsScreen() {
             height={600}
             className="absolute top-[80%] -right-2 w-24 h-auto lg:w-48 xl:w-64 lg:top-0 xl:top-0 lg:right-0"
             loading="lazy"
-            sizes="(max-width: 768px) 30vw, 15vw"
-            style={{ width: "100%", height: "auto" }}
           />
           <div className="text-center mx-auto max-w-3xl px-4 z-10">
             <p className="text-black text-base mb-3 lg:text-xl xl:text-3xl">
@@ -545,8 +539,6 @@ export default function SwapNftsScreen() {
             height={600}
             className="absolute top-[80%] -left-2 w-24 h-auto lg:w-48 xl:w-64 lg:top-0 xl:top-0 lg:left-0"
             loading="lazy"
-            sizes="(max-width: 768px) 30vw, 15vw"
-            style={{ width: "100%", height: "auto" }}
           />
         </div>
         <div className="relative mt-20 pb-10 pt-4 border-2 border-black shadow-neo px-2 bg-[#ffd6a0] lg:mt-24 xl:mt-32 lg:pb-12 xl:pb-16 lg:pt-6 xl:pt-8 lg:px-4 xl:px-6">
@@ -600,8 +592,6 @@ export default function SwapNftsScreen() {
                           loading={
                             displayedNfts.indexOf(nft) < 6 ? "eager" : "lazy"
                           }
-                          sizes="(max-width: 768px) 90vw, 25vw"
-                          style={{ width: "100%", height: "auto" }}
                           onError={(e) => {
                             e.currentTarget.style.display = "none";
                           }}
