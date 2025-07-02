@@ -5,9 +5,23 @@ import Link from "next/link";
 import { useAccount, useDisconnect } from "wagmi";
 import { Button } from "./ui/button";
 import { LogOut, Wallet } from "lucide-react";
-import { ConnectButton } from "@rainbow-me/rainbowkit";
+import { useAppKit } from '@reown/appkit/react';
 import { usePathname, useRouter } from "next/navigation";
 import { useEffect } from "react";
+
+const ConnectWalletButton = () => {
+  const { open } = useAppKit();
+  
+  return (
+    <Button
+      onClick={() => open()}
+      className="bg-[#ffdcaf] mr-5 hover:bg-[#e7c393] text-black scale-90 lg:scale-100 xl:scale-110 text-[10px] md:text-xs lg:text-sm xl:text-xl h-6 md:h-8 lg:h-10 xl:h-12 rounded-lg px-4 lg:px-6 xl:px-8 border-2 border-black shadow-neo"
+    >
+      <Wallet className="w-4 h-4 mr-1" />
+      Connect Wallet
+    </Button>
+  );
+};
 
 const Header = () => {
   const { isConnected } = useAccount();
@@ -69,17 +83,7 @@ const Header = () => {
             </Button>
           </>
         ) : (
-          <ConnectButton.Custom>
-            {({ openConnectModal }) => (
-              <Button
-                onClick={openConnectModal}
-                className="bg-[#ffdcaf] mr-5 hover:bg-[#e7c393] text-black scale-90 lg:scale-100 xl:scale-110 text-[10px] md:text-xs lg:text-sm xl:text-xl h-6 md:h-8 lg:h-10 xl:h-12 rounded-lg px-4 lg:px-6 xl:px-8 border-2 border-black shadow-neo"
-              >
-                <Wallet className="w-4 h-4 mr-1" />
-                Connect Wallet
-              </Button>
-            )}
-          </ConnectButton.Custom>
+          <ConnectWalletButton />
         )}
       </div>
     </div>
