@@ -1,15 +1,17 @@
 "use client";
 
 import { Card, CardContent } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
 import Header from "@/components/Header";
 import Image from "next/image";
 import { cn, racing, spicy } from "@/lib/utils";
-
-// import { ConnectButton } from "@rainbow-me/rainbowkit";
-// import { useAccount } from "wagmi";
+import { useAppKit } from "@reown/appkit/react";
+import { useAccount } from "wagmi";
+import { ConnectButton } from "@rainbow-me/rainbowkit";
 
 export default function WelcomeScreen() {
-  // const { isConnected } = useAccount();
+  const { isConnected } = useAccount();
+  const { open } = useAppKit();
 
   return (
     <div>
@@ -67,18 +69,21 @@ export default function WelcomeScreen() {
               <br />
               NFTs For Gululu Points
             </p>
-            {/* {!isConnected && (
+            {!isConnected && (
               <ConnectButton.Custom>
-                {(props) => (
+                {() => (
                   <Button
-                    onClick={props.openConnectModal}
+                    onClick={(e) => {
+                      e.preventDefault();
+                      open();
+                    }}
                     className="bg-[#ffdcaf] hover:bg-[#e7c393] text-black scale-90 lg:scale-100 xl:scale-110 text-[10px] md:text-xs lg:text-sm xl:text-xl h-6 md:h-8 lg:h-10 xl:h-12 rounded-lg px-4 lg:px-6 xl:px-8 border-2 border-black shadow-neo"
                   >
                     Connect Wallet
                   </Button>
                 )}
               </ConnectButton.Custom>
-            )} */}
+            )}
           </div>
         </div>
 
@@ -107,99 +112,98 @@ export default function WelcomeScreen() {
             className="mb-4 absolute -translate-y-full top-8 lg:top-12 xl:top-16 -left-9 lg:-left-16 xl:-left-20 z-[1] w-36 md:w-38 lg:w-64 xl:w-[500px]"
             loading="lazy"
           />
-
-          <Card className="border-2 lg:border-4 p-0 mx-3 lg:mx-6 xl:mx-8 rounded-none border-black bg-[#FFC67C] shadow-neo">
-            <CardContent className="px-2 lg:px-4 xl:px-20 py-0 lg:py-4 xl:py-6 flex items-center gap-4 lg:gap-6 xl:gap-8">
-              <div className="flex-1">
-                <h3 className="font-bold text-black text-sm lg:text-4xl xl:text-6xl">
-                  Connect Wallet
-                </h3>
-                <p className="text-[10px] lg:text-sm xl:text-2xl leading-tight text-black">
-                  Connect your Web3 wallet to
-                  <br />
-                  access your NFT collection.
-                </p>
-              </div>
-              <Image
-                src={"/Untitled-1 1.png"}
-                alt=""
-                width={270}
-                className="w-20 lg:w-28 xl:w-56"
-                height={50}
-                loading="lazy"
-              />
-            </CardContent>
-          </Card>
-
-          <Card className="border-2 lg:border-4 p-0 mx-3 lg:mx-6 xl:mx-8 rounded-none border-black bg-[#FFC67C] shadow-neo">
-            <CardContent className="px-2 lg:px-4 xl:px-20 py-0 lg:py-4 xl:py-6 flex items-center gap-4 lg:gap-6 xl:gap-8">
-              <Image
-                src={"/Group 48096005.png"}
-                alt=""
-                width={270}
-                className="w-20 lg:w-28 xl:w-56 -translate-y-1"
-                height={50}
-                loading="lazy"
-              />
-              <div className="flex-1 text-right">
-                <h3 className="font-bold text-black text-sm lg:text-4xl xl:text-6xl">
-                  Select NFT
-                </h3>
-                <p className="text-[10px] lg:text-sm xl:text-2xl leading-tight text-black">
-                  Choose an NFT from your collection
-                  <br />
-                  that you want to swap.
-                </p>
-              </div>
-            </CardContent>
-          </Card>
-
-          <Card className="border-2 lg:border-4 py-1 lg:py-2 xl:py-3 mx-3 lg:mx-6 xl:mx-8 rounded-none border-black bg-[#FFC67C] shadow-neo">
-            <CardContent className="px-2 lg:px-4 xl:px-20 py-0 lg:py-3 xl:py-5 flex items-center gap-4 lg:gap-6 xl:gap-8">
-              <div className="flex-1">
-                <h3 className="font-bold text-black text-sm lg:text-4xl xl:text-6xl">
-                  Swap & Analyse
-                </h3>
-                <p className="text-[10px] lg:mt-4 lg:text-sm xl:text-2xl leading-tight text-black">
-                  Swap the NFT and we analyse its
-                  <br />
-                  metadata for rarity.
-                </p>
-              </div>
-              <Image
-                src={"/Group 48096003.png"}
-                alt=""
-                width={270}
-                className="w-20 lg:w-28 xl:w-56"
-                height={50}
-                loading="lazy"
-              />
-            </CardContent>
-          </Card>
-
-          <Card className="border-2 lg:border-4 py-0 lg:py-4 xl:py-6 mx-3 lg:mx-6 xl:mx-8 rounded-none border-black bg-[#FFC67C] shadow-neo">
-            <CardContent className="px-2 lg:px-4 xl:px-20 py-1 lg:py-3 xl:py-5 flex items-center gap-4 lg:gap-6 xl:gap-8">
-              <Image
-                src={"/Group 48096004.png"}
-                alt=""
-                width={270}
-                className="w-20 lg:w-28 xl:w-56"
-                height={50}
-                loading="lazy"
-              />
-              <div className="flex-1 text-right">
-                <h3 className="font-bold text-black text-sm lg:text-4xl xl:text-6xl">
-                  Earn Points
-                </h3>
-                <p className="text-[10px] lg:text-sm xl:text-2xl leading-tight text-black">
-                  Receive points based on the rarity
-                  <br />
-                  and view in your dashboard.
-                </p>
-              </div>
-            </CardContent>
-          </Card>
         </div>
+        <Card className="border-2 lg:border-4 p-0 mx-3 lg:mx-6 xl:mx-8 rounded-none border-black bg-[#FFC67C] shadow-neo">
+          <CardContent className="px-2 lg:px-4 xl:px-20 py-0 lg:py-4 xl:py-6 flex items-center gap-4 lg:gap-6 xl:gap-8">
+            <div className="flex-1">
+              <h3 className="font-bold text-black text-sm lg:text-4xl xl:text-6xl">
+                Connect Wallet
+              </h3>
+              <p className="text-[10px] lg:text-sm xl:text-2xl leading-tight text-black">
+                Connect your Web3 wallet to
+                <br />
+                access your NFT collection.
+              </p>
+            </div>
+            <Image
+              src={"/Untitled-1 1.png"}
+              alt=""
+              width={270}
+              className="w-20 lg:w-28 xl:w-56"
+              height={50}
+              loading="lazy"
+            />
+          </CardContent>
+        </Card>
+
+        <Card className="border-2 lg:border-4 p-0 mx-3 lg:mx-6 xl:mx-8 rounded-none border-black bg-[#FFC67C] shadow-neo">
+          <CardContent className="px-2 lg:px-4 xl:px-20 py-0 lg:py-4 xl:py-6 flex items-center gap-4 lg:gap-6 xl:gap-8">
+            <Image
+              src={"/Group 48096005.png"}
+              alt=""
+              width={270}
+              className="w-20 lg:w-28 xl:w-56 -translate-y-1"
+              height={50}
+              loading="lazy"
+            />
+            <div className="flex-1 text-right">
+              <h3 className="font-bold text-black text-sm lg:text-4xl xl:text-6xl">
+                Select NFT
+              </h3>
+              <p className="text-[10px] lg:text-sm xl:text-2xl leading-tight text-black">
+                Choose an NFT from your collection
+                <br />
+                that you want to swap.
+              </p>
+            </div>
+          </CardContent>
+        </Card>
+
+        <Card className="border-2 lg:border-4 py-1 lg:py-2 xl:py-3 mx-3 lg:mx-6 xl:mx-8 rounded-none border-black bg-[#FFC67C] shadow-neo">
+          <CardContent className="px-2 lg:px-4 xl:px-20 py-0 lg:py-3 xl:py-5 flex items-center gap-4 lg:gap-6 xl:gap-8">
+            <div className="flex-1">
+              <h3 className="font-bold text-black text-sm lg:text-4xl xl:text-6xl">
+                Swap & Analyse
+              </h3>
+              <p className="text-[10px] lg:mt-4 lg:text-sm xl:text-2xl leading-tight text-black">
+                Swap the NFT and we analyse its
+                <br />
+                metadata for rarity.
+              </p>
+            </div>
+            <Image
+              src={"/Group 48096003.png"}
+              alt=""
+              width={270}
+              className="w-20 lg:w-28 xl:w-56"
+              height={50}
+              loading="lazy"
+            />
+          </CardContent>
+        </Card>
+
+        <Card className="border-2 lg:border-4 py-0 lg:py-4 xl:py-6 mx-3 lg:mx-6 xl:mx-8 rounded-none border-black bg-[#FFC67C] shadow-neo">
+          <CardContent className="px-2 lg:px-4 xl:px-20 py-1 lg:py-3 xl:py-5 flex items-center gap-4 lg:gap-6 xl:gap-8">
+            <Image
+              src={"/Group 48096004.png"}
+              alt=""
+              width={270}
+              className="w-20 lg:w-28 xl:w-56"
+              height={50}
+              loading="lazy"
+            />
+            <div className="flex-1 text-right">
+              <h3 className="font-bold text-black text-sm lg:text-4xl xl:text-6xl">
+                Earn Points
+              </h3>
+              <p className="text-[10px] lg:text-sm xl:text-2xl leading-tight text-black">
+                Receive points based on the rarity
+                <br />
+                and view in your dashboard.
+              </p>
+            </div>
+          </CardContent>
+        </Card>
       </div>
     </div>
   );
