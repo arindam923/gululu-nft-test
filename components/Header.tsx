@@ -2,14 +2,14 @@
 import Image from "next/image";
 
 import Link from "next/link";
-// import { useAccount, useDisconnect } from "wagmi";
-// import { ConnectButton } from "@rainbow-me/rainbowkit";
-
-// import { useUserPoints } from "@/lib/hooks/useUserPoints";
+import { useAccount, useDisconnect } from "wagmi";
+import { Button } from "./ui/button";
+import { LogOut, Wallet } from "lucide-react";
+import { ConnectButton } from "@rainbow-me/rainbowkit";
 
 const Header = () => {
-  //   const { isConnected } = useAccount();
-  //   const { disconnect } = useDisconnect();
+  const { isConnected } = useAccount();
+  const { disconnect } = useDisconnect();
   //   const router = useRouter();
   //   const { points, isLoading } = useUserPoints();
 
@@ -23,10 +23,10 @@ const Header = () => {
   //     router.push("/swap");
   //   };
 
-  //   const handleDisconnect = () => {
-  //     disconnect();
-  //     router.push("/");
-  //   };
+  const handleDisconnect = () => {
+    disconnect();
+    // router.push("/");
+  };
 
   return (
     <div className="z-50 flex items-center justify-between py-2 md:px-6 px-4 bg-gradient-to-r from-[#FFB100] to-[#E29D00] border-2 md:border-4 border-amber-900/80 rounded-lg mt-3 relative max-w-[1450px] mx-auto w-11/12 md:w-full">
@@ -54,14 +54,14 @@ const Header = () => {
         />
       </Link>
       <div className="flex gap-2">
-        {/* {isConnected ? (
+        {isConnected ? (
           <>
             <Button
-              onClick={handlePointsClick}
+              // onClick={handlePointsClick}
               className="bg-[#ffdcaf] hover:bg-[#e7c393] text-black scale-90 lg:scale-100 xl:scale-110 text-[10px] md:text-xs lg:text-sm xl:text-xl h-6 md:h-8 lg:h-10 xl:h-12 rounded-lg px-4 lg:px-6 xl:px-8 border-2 border-black shadow-neo"
             >
               <Image src="/LOGOy2 1.png" alt="" width={20} height={20} />
-              {isLoading ? "Loading..." : `${points} Points`}
+              {/* {isLoading ? "Loading..." : `${points} Points`} */}
             </Button>
             <Button
               onClick={handleDisconnect}
@@ -83,7 +83,7 @@ const Header = () => {
               </Button>
             )}
           </ConnectButton.Custom>
-        )} */}
+        )}
       </div>
     </div>
   );
