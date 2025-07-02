@@ -2,8 +2,7 @@ import { createAppKit } from "@reown/appkit/react";
 import { WagmiAdapter } from "@reown/appkit-adapter-wagmi";
 import { bsc } from "@reown/appkit/networks";
 
-// 1. Get projectId from https://cloud.walletconnect.com
-const projectId = "79a9f90c238da1f445b4f668fbab96cc";
+const projectId = "05e21b0bc8ed3b5c5c17c5af120b2cc2";
 
 // 2. Create a metadata object - optional
 const metadata = {
