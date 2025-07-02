@@ -4,14 +4,11 @@ import { Card, CardContent } from "@/components/ui/card";
 import Header from "@/components/Header";
 import Image from "next/image";
 import { cn, racing, spicy } from "@/lib/utils";
-import { useAppKit } from "@reown/appkit/react";
+import { ConnectButton } from "@rainbow-me/rainbowkit";
 import { useAccount } from "wagmi";
-import { Button } from "../components/ui/button";
 
 export default function WelcomeScreen() {
   const { isConnected } = useAccount();
-  const { open } = useAppKit();
-
   return (
     <div>
       <Header />
@@ -69,12 +66,9 @@ export default function WelcomeScreen() {
               NFTs For Gululu Points
             </p>
             {!isConnected && (
-              <Button
-                onClick={() => open()}
-                className="bg-[#ffdcaf] hover:bg-[#e7c393] text-black scale-90 lg:scale-100 xl:scale-110 text-[10px] md:text-xs lg:text-sm xl:text-xl h-6 md:h-8 lg:h-10 xl:h-12 rounded-lg px-4 lg:px-6 xl:px-8 border-2 border-black shadow-neo"
-              >
-                Connect Wallet
-              </Button>
+              <div className="scale-90 lg:scale-100 xl:scale-110">
+                <ConnectButton />
+              </div>
             )}
           </div>
         </div>

@@ -5,7 +5,6 @@ import "./globals.css";
 import Footer from "@/components/Footer";
 import { Toaster } from "@/components/Toaster";
 import SwapProvider from "@/components/SwapProvider";
-import { headers } from "next/headers";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -27,15 +26,12 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const headersData = await headers();
-  const cookies = headersData.get("cookie");
-
   return (
     <html lang="en">
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <SwapProvider cookies={cookies}>
+        <SwapProvider>
           <div className="mx-auto min-h-screen bg-[#FFC882] relative overflow-hidden">
             {children}
             <Footer />
