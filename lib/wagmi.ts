@@ -10,7 +10,7 @@ const metadata = {
   name: "Gululu NFT",
   description:
     "Swap Your Ridiculous Dragons And Nomaimai NFTs For Gululu Points",
-  url: "https://gululu.com", // origin must match your domain & subdomain
+  url: "https://gululu-nft-test.vercel.app", // origin must match your domain & subdomain
   icons: ["https://avatars.githubusercontent.com/u/179229932"],
 };
 
@@ -21,7 +21,7 @@ const networks = [bsc];
 const wagmiAdapter = new WagmiAdapter({
   networks,
   projectId,
-  ssr: true,
+  ssr: false,
 });
 
 // 5. Create modal
