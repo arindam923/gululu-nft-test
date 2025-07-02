@@ -6,26 +6,23 @@ import { useAccount, useDisconnect } from "wagmi";
 import { Button } from "./ui/button";
 import { LogOut, Wallet } from "lucide-react";
 import { ConnectButton } from "@rainbow-me/rainbowkit";
+import { usePathname, useRouter } from "next/navigation";
+import { useEffect } from "react";
 
 const Header = () => {
   const { isConnected } = useAccount();
   const { disconnect } = useDisconnect();
-  //   const router = useRouter();
-  //   const { points, isLoading } = useUserPoints();
+  const router = useRouter();
+  const pathname = usePathname();
 
-  //   useEffect(() => {
-  //     if (isConnected && pathname === "/") {
-  //       router.push("/swap");
-  //     }
-  //   }, [isConnected, router, pathname]);
-
-  //   const handlePointsClick = () => {
-  //     router.push("/swap");
-  //   };
+  useEffect(() => {
+    if (isConnected && pathname === "/") {
+      router.push("/swap");
+    }
+  }, [isConnected, router, pathname]);
 
   const handleDisconnect = () => {
     disconnect();
-    // router.push("/");
   };
 
   return (
