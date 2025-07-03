@@ -12,12 +12,42 @@ import { useEffect, useState } from "react";
 export default function WelcomeScreen() {
   const { isConnected } = useAccount();
   const [mounted, setMounted] = useState(false);
+  const [error, setError] = useState<Error | null>(null);
 
   useEffect(() => {
-    setMounted(true);
+    if (typeof window !== 'undefined') {
+      const initWallet = async () => {
+        try {
+          // Add a small delay to ensure proper mobile initialization
+          await new Promise(resolve => setTimeout(resolve, 100));
+          setMounted(true);
+        } catch (err) {
+          console.error('Wallet initialization error:', err);
+          setError(err instanceof Error ? err : new Error('Failed to initialize wallet'));
+        }
+      };
+      initWallet();
+    }
+    return () => {
+      setMounted(false);
+      setError(null);
+    };
   }, []);
 
   if (!mounted) return null;
+  if (error) {
+    return (
+      <div className="p-4 text-center">
+        <div className="text-red-500 mb-2">Failed to connect wallet</div>
+        <Button
+          onClick={() => window.location.reload()}
+          className="bg-[#ffdcaf] hover:bg-[#e7c393] text-black"
+        >
+          Try Again
+        </Button>
+      </div>
+    );
+  }
 
   return (
     <div>
